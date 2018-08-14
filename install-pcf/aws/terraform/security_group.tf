@@ -12,6 +12,18 @@ resource "aws_security_group" "directorSG" {
     tags {
         Name = "${var.prefix}-Ops Manager Director Security Group"
     }
+    ingress {
+        from_port = 443
+        to_port = 443
+        protocol = "HTTPS"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    ingress {
+        from_port = 22
+        to_port = 22
+        protocol = "TCP"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
 }
 
 resource "aws_security_group_rule" "allow_directorsg_ingress_default" {
