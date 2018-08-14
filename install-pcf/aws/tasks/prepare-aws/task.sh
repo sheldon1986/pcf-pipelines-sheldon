@@ -4,6 +4,7 @@ set -eu
 
 ami=$(cat ami/ami)
 
+
 OPSMAN_ALLOW_SSH=0
 OPSMAN_ALLOW_SSH_CIDR_LIST='["0.0.0.0/32"]'
 if [[ -n "${OPSMAN_ALLOW_SSH_CIDR_RANGES// }" ]]; then
@@ -59,6 +60,11 @@ terraform plan \
   -out terraform.tfplan \
   pcf-pipelines/install-pcf/aws/terraform
 
+echo "plan done"
+
 terraform apply \
   -state-out terraform-state-output/terraform.tfstate \
   terraform.tfplan
+
+echo "apply done"
+

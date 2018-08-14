@@ -35,10 +35,7 @@ variable "nat_instance_type" {
     description = "Instance Type for NAT instances"
     default = "t2.medium"
 }
-variable "db_instance_type" {
-    description = "Instance Type for RDS instance"
-    default = "db.m4.large"
-}
+
 
 variable "vpc_cidr" {
     description = "CIDR for the whole VPC"
