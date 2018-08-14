@@ -1,15 +1,14 @@
 # AMI to use for nat box
 # Update with the correct NAT AMI for your region. List of AMIs can be found
 # here: https://github.com/pivotal-cf/terraforming-aws/blob/master/nat.tf
-amis_nat: ami-303b1458
+amis_nat: ami-8e0fa6e0
 
 # This key must be a key with admin access
 aws_access_key_id: CHANGEME
 aws_secret_access_key: CHANGEME
 
-aws_az1: us-east-1a
-aws_az2: us-east-1b
-aws_az3: us-east-1d
+aws_az1: ap-northeast-2a 
+aws_az2: ap-northeast-2c
 
 # ARN of the wildcard certificate to use; upload this in [AWS](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html#upload-server-certificate). This must be done prior to running the pipeline.
 aws_cert_arn: CHANGEME
@@ -17,7 +16,7 @@ aws_cert_arn: CHANGEME
 # Upload PEM to AWS as the below key pair name
 aws_key_name: CHANGEME
 
-aws_region: us-east-1
+aws_region: ap-northeast-2
 
 # Ciphers
 # An ordered, colon-delimited list of Golang supported TLS cipher suites in OpenSSL format.
@@ -32,9 +31,9 @@ container_networking_nw_cidr: 10.255.0.0/16
 # For credhub integration, Set the number of credhub instances in resource config to 2
 # Primary Encryption Name MUST match one of the encryption key names provided
 # Encryption keys 2 and 3 are optional
-credhub_primary_encryption_name: dummy encryption key 1
-credhub_encryption_key_name1: dummy encryption key 1
-credhub_encryption_key_secret1: CHANGEME_CHANGEME_CHANGEME_CHANGEME
+credhub_primary_encryption_name: key1
+credhub_encryption_key_name1: key1
+credhub_encryption_key_secret1: 0e9e401e5a1ab8673c1fa48f2a83b2f329348bf9
 credhub_encryption_key_name2: # Optional Name 2
 credhub_encryption_key_secret2: # Optional Secret 2
 credhub_encryption_key_name3: # Optional Name 3
@@ -42,41 +41,41 @@ credhub_encryption_key_secret3: # Optional Secret 2
 
 # ERT Database Credentials - Required
 db_accountdb_password: CHANGEME
-db_accountdb_username: CHANGEME
+db_accountdb_username: db_accountdb_user
 db_app_usage_service_password: CHANGEME
-db_app_usage_service_username: CHANGEME
+db_app_usage_service_username: db_app_usage_service_user
 db_autoscale_password: CHANGEME
-db_autoscale_username: CHANGEME
+db_autoscale_username: db_autoscale_user
 db_ccdb_password: CHANGEME
-db_ccdb_username: CHANGEME
+db_ccdb_username: db_ccdb_user
 db_diego_password: CHANGEME
-db_diego_username: CHANGEME
+db_diego_username: db_diego_user
 db_locket_password: CHANGEME
-db_locket_username: CHANGEME
+db_locket_username: db_locket_user
 db_networkpolicyserverdb_password: CHANGEME
-db_networkpolicyserverdb_username: CHANGEME
+db_networkpolicyserverdb_username: db_networkpolicyserverdb_user
 db_nfsvolumedb_password: CHANGEME
-db_nfsvolumedb_username: CHANGEME
+db_nfsvolumedb_username: db_ndfsvolumedb_user
 db_notifications_password: CHANGEME
-db_notifications_username: CHANGEME
+db_notifications_username: db_notifications_user
 db_routing_password: CHANGEME
-db_routing_username: CHANGEME
+db_routing_username: db_routing_user
 db_silk_password: CHANGEME
-db_silk_username: CHANGEME
+db_silk_username: db_silk_user
 db_uaa_password: CHANGEME
-db_uaa_username: CHANGEME
+db_uaa_username: db_uaa_user
 
 # RDS Master Credentials - Required
 db_master_password: CHANGEME
-db_master_username: CHANGEME
+db_master_username: db_master_user
 
 # Optional PEM-encoded certificates to add to BOSH VMs
-director_certificates:
+director_certificates: ((pcf-ca.ca))
 
 # Domain Names for ERT
-pcf_ert_domain: CHANGEME # This is the domain you will access ERT with, for example: pcf.example.com.
-system_domain: CHANGEME # e.g. system.pcf.example.com
-apps_domain: CHANGEME   # e.g. apps.pcf.example.com
+pcf_ert_domain: pas.pcfdemo.net # This is the domain you will access ERT with, for example: pcf.example.com.
+system_domain: system.pas.pcfdemo.net # e.g. system.pcf.example.com
+apps_domain: apps.pas.pcfdemo.net   # e.g. apps.pcf.example.com
 
 # Errands to disable prior to deploying ERT
 # Valid values:
@@ -99,7 +98,7 @@ apps_domain: CHANGEME   # e.g. apps.pcf.example.com
 ert_errands_to_disable: none
 
 # PCF Elastic Runtime minor version to track
-ert_major_minor_version: ^2\.0\.[0-9]+$ # ERT minor version to track (e.g ^2\.0\.[0-9]+$ will track 2.0.x versions)
+ert_major_minor_version: ^2\.2\.[0-9]+$ # ERT minor version to track (e.g ^2\.0\.[0-9]+$ will track 2.0.x versions)
 
 # Optional. Duration in seconds to maintain an open connection when client supports keep-alive.
 frontend_idle_timeout: 61
@@ -114,11 +113,11 @@ haproxy_backend_ca:         # Required if haproxy_forward_tls is enabled - HAPro
 internet_connected: false
 
 # Email address for sending mysql monitor notifications
-mysql_monitor_recipient_email:
+mysql_monitor_recipient_email: mkim@pivotal.io
 
 # Operations Manager credentials
 # opsman_admin_username/opsman_admin_password needs to be specified
-opsman_admin_username: CHANGEME
+opsman_admin_username: admin
 opsman_admin_password: CHANGEME
 
 # CIDRs to allow HTTPS access to Operations Manager from
@@ -158,7 +157,7 @@ routing_disable_http: false
 routing_tls_termination: load_balancer
 
 # For terraform state file (http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region)
-S3_ENDPOINT: https://s3.amazonaws.com
+S3_ENDPOINT: https://s3.ap-northeast-2.amazonaws.com
 S3_OUTPUT_BUCKET: CHANGEME
 
 # Setting appropriate Application Security Groups is critical for a secure
@@ -166,7 +165,7 @@ S3_OUTPUT_BUCKET: CHANGEME
 # once the Elastic Runtime deployment completes, you will review and set the
 # appropriate application security groups.
 # See https://docs.pivotal.io/pivotalcf/opsguide/app-sec-groups.html
-security_acknowledgement: CHANGEME
+security_acknowledgement: X
 
 # Subnets
 #   Pipeline uses six types of network: Public, Elastic Runtime, Services, Dynamic Services and RDS and Infrastructure networks
@@ -179,36 +178,27 @@ security_acknowledgement: CHANGEME
 #   * Infrastructure network: Deploy Bosh director
 dynamic_services_subnet_cidr_az1: 192.168.112.0/22
 dynamic_services_subnet_cidr_az2: 192.168.128.0/22
-dynamic_services_subnet_cidr_az3: 192.168.144.0/22
 dynamic_services_subnet_reserved_ranges_z1: 192.168.112.0 - 192.168.112.10
 dynamic_services_subnet_reserved_ranges_z2: 192.168.128.0 - 192.168.128.10
-dynamic_services_subnet_reserved_ranges_z3: 192.168.144.0 - 192.168.144.10
 ert_subnet_cidr_az1: 192.168.16.0/20
 ert_subnet_cidr_az2: 192.168.32.0/20
-ert_subnet_cidr_az3: 192.168.48.0/20
 ert_subnet_reserved_ranges_z1: 192.168.16.0 - 192.168.16.10
 ert_subnet_reserved_ranges_z2: 192.168.32.0 - 192.168.32.10
-ert_subnet_reserved_ranges_z3: 192.168.48.0 - 192.168.48.10
 infra_subnet_cidr_az1: 192.168.6.0/24
 infra_subnet_reserved_ranges_z1: 192.168.6.0 - 192.168.6.10
 nat_ip_az1: 192.168.0.6
 nat_ip_az2: 192.168.1.6
-nat_ip_az3: 192.168.2.6
 opsman_ip_az1: 192.168.0.7
 public_subnet_cidr_az1: 192.168.0.0/24
 public_subnet_cidr_az2: 192.168.1.0/24
-public_subnet_cidr_az3: 192.168.2.0/24
 rds_subnet_cidr_az1: 192.168.3.0/24
 rds_subnet_cidr_az2: 192.168.4.0/24
-rds_subnet_cidr_az3: 192.168.5.0/24
 services_subnet_cidr_az1: 192.168.64.0/20
 services_subnet_cidr_az2: 192.168.80.0/20
-services_subnet_cidr_az3: 192.168.96.0/20
 services_subnet_reserved_ranges_z1: 192.168.64.0 - 192.168.64.10
 services_subnet_reserved_ranges_z2: 192.168.80.0 - 192.168.80.10
-services_subnet_reserved_ranges_z3: 192.168.96.0 - 192.168.96.10
 vpc_cidr: 192.168.0.0/16
 
 # Prefix to use for Terraform-managed infrastructure, e.g. 'pcf-terraform'
 # Must be globally unique.
-terraform_prefix: CHANGEME
+terraform_prefix: pas-tf
