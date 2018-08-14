@@ -15,8 +15,8 @@ variable "route53_zone_id" {}
 /*
 * used for configuring ingress rules to ops manager vm
 */
-variable "opsman_allow_ssh" {default = false}
-variable "opsman_allow_https" {default = false}
+variable "opsman_allow_ssh" {default = true}
+variable "opsman_allow_https" {default = true}
 variable "opsman_allow_ssh_cidr_ranges" {
     type = "list"
     default = ["0.0.0.0/32"]
