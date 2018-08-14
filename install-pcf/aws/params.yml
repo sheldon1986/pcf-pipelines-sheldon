@@ -109,6 +109,31 @@ git_private_key:
 haproxy_forward_tls: enable # If enabled HAProxy will forward all requests to the router over TLS (enable|disable)
 haproxy_backend_ca:         # Required if haproxy_forward_tls is enabled - HAProxy will use the CA provided to verify the certificates provided by the router.
 
+# Instances
+## These resources can take any parameter made available in
+## the ops manager API ( https://your-ops-man/docs#configuring-resources-for-a-job)
+backup_prepare_instances: 0
+clock_global_instances: 1
+cloud_controller_instances: 1
+cloud_controller_worker_instances: 1
+consul_server_instances: 1
+credhub_instances: 0
+diego_brain_instances: 1
+diego_cell_instances: 1
+diego_database_instances: 1
+doppler_instances: 1
+ha_proxy_instances: 0
+loggregator_trafficcontroller_instances: 1
+mysql_instances: 1
+mysql_monitor_instances: 0
+mysql_proxy_instances: 1
+nats_instances: 1
+nfs_server_instances: 1
+router_instances: 1
+syslog_adapter_instances: 1
+syslog_scheduler_instances: 1
+tcp_router_instances: 0
+uaa_instances: 1
 # Whether or not the ERT VMs are internet connected.
 internet_connected: false
 

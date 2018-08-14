@@ -126,7 +126,7 @@ cf_network=$(
   jq -n \
     --arg iaas $pcf_iaas \
     --arg singleton_availability_zone "$pcf_az_1" \
-    --arg other_availability_zones "$pcf_az_1,$pcf_az_2,$pcf_az_3" \
+    --arg other_availability_zones "$pcf_az_1,$pcf_az_2" \
     '
     {
       "network": {
@@ -140,36 +140,48 @@ cf_network=$(
     '
 )
 
+
+JOB_RESOURCE_CONFIG="{
+  \"backup-prepare\": { \"instances\": $BACKUP_PREPARE_INSTANCES },
+  \"clock_global\": { \"instances\": $CLOCK_GLOBAL_INSTANCES },
+  \"cloud_controller\": { \"instances\": $CLOUD_CONTROLLER_INSTANCES },
+  \"cloud_controller_worker\": { \"instances\": $CLOUD_CONTROLLER_WORKER_INSTANCES },
+  \"consul_server\": { \"instances\": $CONSUL_SERVER_INSTANCES },
+  \"credhub\": { \"instances\": $CREDHUB_INSTANCES },
+  \"diego_brain\": { \"instances\": $DIEGO_BRAIN_INSTANCES },
+  \"diego_cell\": { \"instances\": $DIEGO_CELL_INSTANCES },
+  \"diego_database\": { \"instances\": $DIEGO_DATABASE_INSTANCES },
+  \"doppler\": { \"instances\": $DOPPLER_INSTANCES },
+  \"ha_proxy\": { \"instances\": $HA_PROXY_INSTANCES },
+  \"loggregator_trafficcontroller\": { \"instances\": $LOGGREGATOR_TRAFFICCONTROLLER_INSTANCES },
+  \"mysql\": { \"instances\": $MYSQL_INSTANCES },
+  \"mysql_monitor\": { \"instances\": $MYSQL_MONITOR_INSTANCES },
+  \"mysql_proxy\": { \"instances\": $MYSQL_PROXY_INSTANCES },
+  \"nats\": { \"instances\": $NATS_INSTANCES },
+  \"nfs_server\": { \"instances\": $NFS_SERVER_INSTANCES },
+  \"router\": { \"instances\": $ROUTER_INSTANCES },
+  \"syslog_adapter\": { \"instances\": $SYSLOG_ADAPTER_INSTANCES },
+  \"syslog_scheduler\": { \"instances\": $SYSLOG_SCHEDULER_INSTANCES },
+  \"tcp_router\": { \"instances\": $TCP_ROUTER_INSTANCES },
+  \"uaa\": { \"instances\": $UAA_INSTANCES }
+}"
+
+if [[ "$pcf_iaas" == "aws" ]]; then
+  JOB_RESOURCE_CONFIG=$(echo "$JOB_RESOURCE_CONFIG" | \
+    jq --argjson internet_connected $INTERNET_CONNECTED \
+    '. | to_entries[] | {"key": .key, value: (.value + {"internet_connected": $internet_connected}) } ' | \
+    jq -s "from_entries"
+  )
+fi
+
+
 cf_resources=$(
   jq -n \
     --arg terraform_prefix $terraform_prefix \
     --arg iaas $pcf_iaas \
-    --argjson internet_connected $INTERNET_CONNECTED \
+    --argjson job_resource_config "${JOB_RESOURCE_CONFIG}" \
     '
-    {
-      "backup-prepare": {"internet_connected": $internet_connected},
-      "clock_global": {"internet_connected": $internet_connected},
-      "cloud_controller": {"internet_connected": $internet_connected},
-      "cloud_controller_worker": {"internet_connected": $internet_connected},
-      "consul_server": {"internet_connected": $internet_connected},
-      "credhub": {"internet_connected": $internet_connected},
-      "diego_brain": {"internet_connected": $internet_connected},
-      "diego_cell": {"internet_connected": $internet_connected},
-      "diego_database": {"internet_connected": $internet_connected},
-      "doppler": {"internet_connected": $internet_connected},
-      "ha_proxy": {"internet_connected": $internet_connected},
-      "loggregator_trafficcontroller": {"internet_connected": $internet_connected},
-      "mysql": {"instances": 0, "internet_connected": $internet_connected},
-      "mysql_monitor": {"instances": 0, "internet_connected": $internet_connected},
-      "mysql_proxy": {"instances": 0, "internet_connected": $internet_connected},
-      "nats": {"internet_connected": $internet_connected},
-      "nfs_server": {"internet_connected": $internet_connected},
-      "router": {"internet_connected": $internet_connected},
-      "syslog_adapter": {"internet_connected": $internet_connected},
-      "syslog_scheduler": {"internet_connected": $internet_connected},
-      "tcp_router": {"internet_connected": $internet_connected},
-      "uaa": {"internet_connected": $internet_connected}
-    }
+    $job_resource_config
 
     |
 
@@ -191,7 +203,7 @@ cf_properties=$(
   jq -n \
     --arg terraform_prefix $terraform_prefix \
     --arg singleton_availability_zone "$pcf_az_1" \
-    --arg other_availability_zones "$pcf_az_1,$pcf_az_2,$pcf_az_3" \
+    --arg other_availability_zones "$pcf_az_1,$pcf_az_2" \
     --arg saml_cert_pem "$saml_cert_pem" \
     --arg saml_key_pem "$saml_key_pem" \
     --arg haproxy_forward_tls "$HAPROXY_FORWARD_TLS" \

@@ -271,6 +271,29 @@ jobs:
       routing_disable_http: {{routing_disable_http}}
       ROUTING_CUSTOM_CA_CERTIFICATES: {{routing_custom_ca_certificates}}
       ROUTING_TLS_TERMINATION: {{routing_tls_termination}}
+      CONSUL_SERVER_INSTANCES: {{consul_server_instances}}
+      NATS_INSTANCES: {{nats_instances}}
+      NFS_SERVER_INSTANCES: {{nfs_server_instances}}
+      MYSQL_PROXY_INSTANCES: {{mysql_proxy_instances}}
+      MYSQL_INSTANCES: {{mysql_instances}}
+      BACKUP_PREPARE_INSTANCES: {{backup_prepare_instances}}
+      UAA_INSTANCES: {{uaa_instances}}
+      CLOUD_CONTROLLER_INSTANCES: {{cloud_controller_instances}}
+      CREDHUB_INSTANCES: {{credhub_instances}}
+      HA_PROXY_INSTANCES: {{ha_proxy_instances}}
+      HA_PROXY_LB_NAME: {{ha_proxy_lb_name}}
+      ROUTER_INSTANCES: {{router_instances}}
+      MYSQL_MONITOR_INSTANCES: {{mysql_monitor_instances}}
+      CLOCK_GLOBAL_INSTANCES: {{clock_global_instances}}
+      CLOUD_CONTROLLER_WORKER_INSTANCES: {{cloud_controller_worker_instances}}
+      DIEGO_DATABASE_INSTANCES: {{diego_database_instances}}
+      DIEGO_BRAIN_INSTANCES: {{diego_brain_instances}}
+      DIEGO_CELL_INSTANCES: {{diego_cell_instances}}
+      DOPPLER_INSTANCES: {{doppler_instances}}
+      LOGGREGATOR_TRAFFICCONTROLLER_INSTANCES: {{loggregator_trafficcontroller_instances}}
+      TCP_ROUTER_INSTANCES: {{tcp_router_instances}}
+      SYSLOG_ADAPTER_INSTANCES: {{syslog_adapter_instances}}
+      SYSLOG_SCHEDULER_INSTANCES: {{syslog_scheduler_instances}}
       INTERNET_CONNECTED: {{internet_connected}}
       CONTAINER_NETWORKING_NW_CIDR: {{container_networking_nw_cidr}}
       CREDUB_ENCRYPTION_KEY_NAME1: {{credhub_encryption_key_name1}}
