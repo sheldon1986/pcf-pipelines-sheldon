@@ -133,7 +133,7 @@ jobs:
   - aggregate:
     - get: pcf-pipelines
     - get: terraform-state
-      trigger: false
+      trigger: true
       passed: [create-infrastructure]
   - task: config-opsman-auth
     file: pcf-pipelines/tasks/config-opsman/task.yml
