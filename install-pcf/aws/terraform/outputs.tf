@@ -151,21 +151,3 @@ output "dynamic_services_subnet_id_az2" {
     value = "${aws_subnet.PcfVpcDynamicServicesSubnet_az2.id}"
 }
 
-
-# RDS info
-
-output "db_host" {
-    value = "${aws_db_instance.pcf_rds.address}"
-}
-output "db_port" {
-    value = "${aws_db_instance.pcf_rds.port}"
-}
-output "db_username" {
-    value = "${aws_db_instance.pcf_rds.username}"
-}
-output "db_password" {
-    value = "${aws_db_instance.pcf_rds.password}"
-}
-output "db_database" {
-    value = "${aws_db_instance.pcf_rds.name}"
-}
