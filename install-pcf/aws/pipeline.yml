@@ -133,7 +133,7 @@ jobs:
   - aggregate:
     - get: pcf-pipelines
     - get: terraform-state
-      trigger: true
+      trigger: false
       passed: [create-infrastructure]
   - task: config-opsman-auth
     file: pcf-pipelines/tasks/config-opsman/task.yml
@@ -189,7 +189,7 @@ jobs:
         globs:
         - "cf*.pivotal"
     - get: terraform-state
-      trigger: true
+      trigger: false
       passed: [deploy-director]
   - task: upload-tile
     file: pcf-pipelines/tasks/upload-product-and-stemcell/task.yml
