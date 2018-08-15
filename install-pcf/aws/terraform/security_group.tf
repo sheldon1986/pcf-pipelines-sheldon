@@ -24,12 +24,7 @@ resource "aws_security_group" "directorSG" {
         protocol = "TCP"
         cidr_blocks = ["0.0.0.0/0"]
     }
-    egress {
-        from_port = 0
-        to_port = 0
-        protocol = -1
-        cidr_blocks = ["0.0.0.0/0"]
-    }
+    
 }
 
 resource "aws_security_group_rule" "allow_directorsg_ingress_default" {
