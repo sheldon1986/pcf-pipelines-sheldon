@@ -1,3 +1,10 @@
+last commit from https://github.com/pivotal-cf/pcf-pipelines/commits/master
+Commits on Sep 22, 2018
+9f7788ad013be47a685db111d937adfce5ed3257
+updated compatibility matrix v23.5 ---> v23.6
+
+
+
 ### Planned Deprecation
 Please note that this repository will be officially deprecated soon.
 
@@ -42,10 +49,18 @@ These pipelines are found in the `install-pcf` directory, sorted by IaaS.
 
 | IAAS | pipelines release | OM version | ERT version |
 | :--- | --- | --- | --- |
-| vSphere | v23.5 | 2.2.x  | 2.2.x  |
-| Azure | v23.5 | 2.2.x | 2.2.x |
-| AWS | v23.5 | 2.2.x | 2.2.x |
-| GCP | v23.5 | 2.2.x  | 2.2.x  |
+| vSphere | v23.7 | 2.3.x  | 2.3.x  |
+| Azure | v23.7 | 2.3.x | 2.3.x |
+| AWS | v23.7 | 2.3.x | 2.3.x |
+| GCP | v23.7 | 2.3.x  | 2.3.x  |
+| OpenStack | v23 | 2.0.x  | 2.0.x  |
+
+| IAAS | pipelines release | OM version | ERT version |
+| :--- | --- | --- | --- |
+| vSphere | v23.6 | 2.2.x  | 2.2.x  |
+| Azure | v23.6 | 2.2.x | 2.2.x |
+| AWS | v23.6 | 2.2.x | 2.2.x |
+| GCP | v23.6 | 2.2.x  | 2.2.x  |
 | OpenStack | v23 | 2.0.x  | 2.0.x  |
 
 | IAAS | pipelines release | OM version | ERT version |
