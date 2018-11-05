@@ -29,8 +29,8 @@ resources:
   type: git
   source:
     #uri: git@github.com:pivotal-cf/pcf-pipelines.git
-    uri: git@github.com:myminseok/pcf-pipelines.git
-    branch: master
+    uri: git@github.com:myminseok/pcf-pipelines-minseok.git
+    branch: pcf2.3-seoul
     private_key: {{git_private_key}}
 
 - name: pivnet-opsmgr
