@@ -29,7 +29,7 @@ resources:
   type: git
   source:
     #uri: git@github.com:pivotal-cf/pcf-pipelines.git
-    uri: git@github.com:sheldon/pcf-pipelines-sheldon.git
+    uri: git@github.com:sheldon1986/pcf-pipelines-sheldon.git
     branch: master
     private_key: {{git_private_key}}
 
