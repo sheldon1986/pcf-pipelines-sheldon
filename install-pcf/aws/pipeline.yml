@@ -29,8 +29,8 @@ resources:
   type: git
   source:
     #uri: git@github.com:pivotal-cf/pcf-pipelines.git
-    uri: git@github.com:myminseok/pcf-pipelines-minseok.git
-    branch: pcf2.3-seoul
+    uri: git@github.com:sheldon/pcf-pipelines-sheldon.git
+    branch: master
     private_key: {{git_private_key}}
 
 - name: pivnet-opsmgr
@@ -189,7 +189,7 @@ jobs:
         globs:
         - "cf*.pivotal"
     - get: terraform-state
-      trigger: false
+      trigger: true
       passed: [deploy-director]
   - task: upload-tile
     file: pcf-pipelines/tasks/upload-product-and-stemcell/task.yml
