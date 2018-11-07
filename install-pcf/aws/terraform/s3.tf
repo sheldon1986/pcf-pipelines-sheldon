@@ -18,6 +18,9 @@ resource "aws_s3_bucket" "buildpacks" {
         Name = "${var.prefix}-buildpacks"
         Environment = "${var.prefix}"
     }
+    versioning {
+        enabled = true
+  }
 }
 
 resource "aws_s3_bucket" "droplets" {
@@ -29,6 +32,9 @@ resource "aws_s3_bucket" "droplets" {
         Name = "${var.prefix}-droplets"
         Environment = "${var.prefix}"
     }
+    versioning {
+        enabled = true
+  }
 }
 
 resource "aws_s3_bucket" "packages" {
@@ -40,6 +46,9 @@ resource "aws_s3_bucket" "packages" {
         Name = "${var.prefix}-packages"
         Environment = "${var.prefix}"
     }
+versioning {
+    enabled = true
+  }
 }
 
 resource "aws_s3_bucket" "resources" {
@@ -51,4 +60,7 @@ resource "aws_s3_bucket" "resources" {
         Name = "${var.prefix}-resources"
         Environment = "${var.prefix}"
     }
+versioning {
+    enabled = true
+  }
 }

@@ -1,1 +1,1 @@
-fly -t target sp -p install-pcf -c pipeline.yml -l ../../../params-aws.yml -l ../../../secret.yml
+fly -t dj sp -p installpcf -c pipeline.yml -l ~/workspace/params.yml
