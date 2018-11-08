@@ -10,7 +10,6 @@ done
 om-linux \
   --target https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
   --skip-ssl-validation \
-  -o 120 \
   configure-authentication \
   --username "$OPS_MGR_USR" \
   --password "$OPS_MGR_PWD" \
