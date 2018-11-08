@@ -35,6 +35,17 @@ if [ -n "$STEMCELL_VERSION" ]; then
       curl --silent --path "/api/v0/diagnostic_report"
   )
 
+
+
+
+if [ -n "$PAS_STEMCELL_VERSION" ]; then
+  STEMCELL_VERSION=$PAS_STEMCELL_VERSION
+  echo "overwriting stemcell version to $PAS_STEMCELL_VERSION"
+fi
+  
+
+
+
   stemcell=$(
     echo $diagnostic_report |
     jq \

@@ -18,6 +18,7 @@ params:
   NO_PROXY:
   OM_IP:
   IAAS:
+  PAS_STEMCELL_VERSION:
 
 inputs:
   - name: pivnet-product
