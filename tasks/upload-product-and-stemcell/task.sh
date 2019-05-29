@@ -60,7 +60,7 @@ if [ -n "$STEMCELL_VERSION" ]; then
     )
 
     pivnet-cli login --api-token="$PIVNET_API_TOKEN"
-    pivnet-cli download-product-files -p "$product_slug" -r $STEMCELL_VERSION -g "*${IAAS}*" --accept-eula
+    pivnet-cli download-product-files -p "$product_slug" -r $STEMCELL_VERSION -g "*${IAAS}*"
 
     SC_FILE_PATH=`find ./ -name *.tgz`
 
